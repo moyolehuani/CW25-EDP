@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+</head>
+
+
+<body>
+
+    <h1 id="titulo">11 de junio de 2025</h1>
+
+    <p id="saludo">Hola</p>
+
+    <div id="smiling friends">
+        <img id="charlie dompler" src="..\images\charlie.png" height="350">
+        <button class="pim pimbig" id="pim pimbig">make Pim bigger</button>
+        <img id="pim pimling" src="..\images\pim.png" height="250">
+        <button class="pim pimsmall" id="pim pimsmall">make Pim smaller</button>
+    </div>
+
+    <div id="fifth">
+        <h2 id="titulo2">Smorrrrmuuuuu</h2>
+        <button class="vote" id="vote" onclick="votar()">Vote</button>
+        <img id="smormu" src="..\images\smormu.png" height="200">
+    </div>
+
+    <h1>Streamify</h1>
+    <button id="toggle" class="pim">Show Info</button>
+    <div id="info" style="display:none">Welcome to Streamify!
+        <br>
+        John Harrison & the Wichita State University Chamber Players - Summer Mvt. 1: Allegro non Molto
+        <br>
+        <audio id="track" controls>
+            <source src="..\media\Verano Mvt 1 Allegro non molto.mp3" type="audio/mpeg">
+        </audio>
+        <button id="playPause">Play</button>
+        <button id="likebtn">Like this track</button>
+        <br>
+        <p id="count">0 people have liked this track</p>
+    </div>
+</body>
+
+<style>
+    .pim{
+        background-color: rgb(196, 8, 155);
+        border: none;
+        color: white;
+        padding: 16px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+    }
+
+    .pimbig:hover{
+        background-color: white;
+        border-color: rgb(196, 8, 155);
+        color:rgb(196, 8, 155);
+        font-size:24px;
+    }
+
+    .pimsmall:hover{
+        background-color: rgb(43, 0, 112);
+        border-color: rgb(43, 0, 112);
+        color:white;
+        font-size:8px;
+    }
+
+    .vote{
+
+    }
+
+</style>
+
+<script>
+    // Make Charlie glow
+    charlieimg=document.getElementById("charlie dompler");
+    charlieimg.addEventListener("mouseover", () => {
+    charlieimg.style.backgroundColor="#FCA510";
+    console.log("Charlie glow up")
+    });
+
+    charlieimg.addEventListener("mouseout", () => {
+    charlieimg.style.backgroundColor=null;
+    console.log("Charlie glow down")
+    });
+
+     //pim size changes
+        //get Pim
+        pimimg=document.getElementById("pim pimling")
+
+        //make Pim bigger
+        bigbttn=document.getElementById("pim pimbig");
+        //make Pim smaller
+        smallbttn=document.getElementById("pim pimsmall");
+        bigbttn.addEventListener("click",()=>{
+            pimimg.height+=10;
+        });
+        smallbttn.addEventListener("click",()=>{
+            pimimg.height-=10;
+        });
+    //votar por Smormu
+    function votar(){
+        smormu=document.getElementById("smormu");
+        votarbttn=document.getElementById("vote")
+        if(smormu.style.display === "none"){
+            smormu.style.display="inline";
+            votarbttn.innerHTML="Noooo! I really, really, really don't want Smormu";
+        }
+        else{
+            smormu.style.display="none";
+            votarbttn.innerHTML="Vote Yes!!";
+        }
+    }
+
+
+    //streamify info toggle
+        info = document.getElementById("info");
+        toggle = document.getElementById("toggle");
+
+        toggle.addEventListener("click", () => {
+            isHidden = info.style.display === "none";
+            info.style.display = isHidden ? "block" : "none";
+            toggle.textContent = isHidden ? "Hide Info" : "Show Info";
+        });
+
+        track = document.getElementById("track");
+        playbtn = document.getElementById("playPause");
+
+    playbtn.addEventListener("click", () => {
+    if (track.paused) {
+      track.play();
+      playbtn.textContent = "Pause";
+    } else {
+      track.pause();
+      playbtn.textContent = "Play";
+    }
+  });
+
+  //like counter button
+  let likes = 0;
+  countDisplay = document.getElementById("count");
+
+  document.getElementById("likebtn").addEventListener("click", () => {
+    likes++;
+    countDisplay.textContent =  likes +" people have liked this track";
+  });
+
+</script>
+</html>
